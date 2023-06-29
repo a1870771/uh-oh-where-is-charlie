@@ -1,12 +1,29 @@
-[gd_scene load_steps=3 format=3 uid="uid://dyks5yukosfuk"]
+[gd_scene load_steps=5 format=3 uid="uid://dyks5yukosfuk"]
 
 [ext_resource type="PackedScene" uid="uid://cjvcvv27nb1jy" path="res://player.tscn" id="1_a2fwy"]
+[ext_resource type="Script" path="res://main.gd" id="1_a3n5m"]
 [ext_resource type="PackedScene" uid="uid://11ehcj8wxb7i" path="res://Jacks_Room.tscn" id="2_kinuh"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6mrrs"]
+size = Vector2(19, 56)
+
 [node name="Node2D" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_a3n5m")
 
 [node name="Jacks_Room" parent="." instance=ExtResource("2_kinuh")]
+position = Vector2(194, 45)
 
 [node name="Player" parent="." instance=ExtResource("1_a2fwy")]
-position = Vector2(321, 197)
+position = Vector2(301, 151)
 scale = Vector2(2, 2)
+
+[node name="Doorway" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Doorway"]
+z_index = 1
+position = Vector2(455, 174)
+shape = SubResource("RectangleShape2D_6mrrs")
+
+[connection signal="body_entered" from="Doorway" to="." method="_on_doorway_body_entered"]
+[connection signal="body_exited" from="Doorway" to="." method="_on_doorway_body_exited"]
