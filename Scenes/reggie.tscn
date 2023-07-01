@@ -1,0 +1,91 @@
+[gd_scene load_steps=13 format=3 uid="uid://uuq5rj7e51bs"]
+
+[ext_resource type="Texture2D" uid="uid://bxnpkyqt3cnx2" path="res://Assets/Reggie_Back_1.png" id="1_ct847"]
+[ext_resource type="Texture2D" uid="uid://bhlfb2s3h6kdw" path="res://Assets/Reggie_Back_2.png" id="2_d7rcc"]
+[ext_resource type="Texture2D" uid="uid://dlhi5m2lsqd8v" path="res://Assets/Reggie_Back_3.png" id="3_g4gcd"]
+[ext_resource type="Texture2D" uid="uid://0jeqduw6rkxl" path="res://Assets/Reggie_Front_1.png" id="4_7goor"]
+[ext_resource type="Texture2D" uid="uid://x7dk754ct0hw" path="res://Assets/Reggie_Front_2.png" id="5_7v278"]
+[ext_resource type="Texture2D" uid="uid://bicx8ctl8p1ou" path="res://Assets/Reggie_Front_3.png" id="6_k6upy"]
+[ext_resource type="Texture2D" uid="uid://ct8fjnntlx2jp" path="res://Assets/Reggie_Side_1.png" id="7_3ecys"]
+[ext_resource type="Texture2D" uid="uid://be2818co2xlmf" path="res://Assets/Reggie_Side_2.png" id="8_x85bl"]
+[ext_resource type="Texture2D" uid="uid://cxaxo16adklnl" path="res://Assets/Reggie_Side_3.png" id="9_6rq7k"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_77v8b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ct847")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_d7rcc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_ct847")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_g4gcd")
+}],
+"loop": true,
+"name": &"back",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_7goor")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_7v278")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_7goor")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_k6upy")
+}],
+"loop": true,
+"name": &"front",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_3ecys")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_x85bl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_3ecys")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_6rq7k")
+}],
+"loop": true,
+"name": &"side",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_udnlj"]
+radius = 45.0111
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h284n"]
+radius = 5.0
+height = 26.0
+
+[node name="Reggie" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_77v8b")
+animation = &"side"
+
+[node name="detection" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detection"]
+shape = SubResource("CircleShape2D_udnlj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 8)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_h284n")

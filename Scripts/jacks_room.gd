@@ -5,8 +5,9 @@ func _process(delta):
 
 func _on_doorway_body_entered(body):
 	if body.has_method("player"):
+		global.destination = "hallway"
 		global.transition_scene = true
-
+		body.visible = false
 
 func _on_doorway_body_exited(body):
 	if body.has_method("player"):
@@ -14,6 +15,6 @@ func _on_doorway_body_exited(body):
 
 func change_scene():
 	if global.transition_scene == true:
-		if global.current_scene == "jacks_room":
-			get_tree().change_scene_to_file("res://Scenes/hallway.tscn")
+		if global.current_scene == "jacks_room" && global.destination == "hallway":
+			SceneTransition.change_scene("res://Scenes/hallway.tscn")
 			global.finish_scene_change()

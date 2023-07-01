@@ -21,9 +21,6 @@ func _process(delta):
 		velocity = Vector2.ZERO
 		$AnimatedSprite2D.stop()
 	move_and_slide()
-	#position += velocity * delta
-	#position.x = clamp(position.x, 0, screen_size.x)
-	#position.y = clamp(position.y, 0, screen_size.y)
 	
 	if velocity.y < 0:
 		$AnimatedSprite2D.animation = "back"
@@ -32,8 +29,3 @@ func _process(delta):
 	elif velocity.x != 0:
 		$AnimatedSprite2D.animation = "side"
 		$AnimatedSprite2D.flip_h = velocity.x < 0
-		
-	if global.current_scene == "jacks_room":
-		$Camera2D.enabled = false
-	else:
-		$Camera2D.enabled = true
