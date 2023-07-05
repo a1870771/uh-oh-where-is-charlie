@@ -1,5 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://uuq5rj7e51bs"]
+[gd_scene load_steps=14 format=3 uid="uid://uuq5rj7e51bs"]
 
+[ext_resource type="Script" path="res://Scripts/reggie.gd" id="1_80nl3"]
 [ext_resource type="Texture2D" uid="uid://bxnpkyqt3cnx2" path="res://Assets/Reggie_Back_1.png" id="1_ct847"]
 [ext_resource type="Texture2D" uid="uid://bhlfb2s3h6kdw" path="res://Assets/Reggie_Back_2.png" id="2_d7rcc"]
 [ext_resource type="Texture2D" uid="uid://dlhi5m2lsqd8v" path="res://Assets/Reggie_Back_3.png" id="3_g4gcd"]
@@ -72,6 +73,8 @@ radius = 5.0
 height = 26.0
 
 [node name="Reggie" type="CharacterBody2D"]
+scale = Vector2(2, 2)
+script = ExtResource("1_80nl3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -89,3 +92,6 @@ shape = SubResource("CircleShape2D_udnlj")
 position = Vector2(-1, 8)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_h284n")
+
+[connection signal="body_entered" from="detection" to="." method="_on_detection_body_entered"]
+[connection signal="body_exited" from="detection" to="." method="_on_detection_body_exited"]
